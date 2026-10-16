@@ -1,0 +1,8 @@
+[Unit]
+Description=Sensorlab DHT11 measurement
+
+[Service]
+Type=oneshot
+User=marcus
+WorkingDirectory=/home/marcus/Projekte/sensorlab
+ExecStart=/home/marcus/Projekte/sensorlab/.venv/bin/python /home/marcus/Projekte/sensorlab/sensor_logger.py

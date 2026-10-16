@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Sensorlab every three hours
+
+[Timer]
+OnCalendar=*-*-* 00/3:00:00
+Persistent=true
+Unit=sensorlab.service
+
+[Install]
+WantedBy=timers.target
