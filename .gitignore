@@ -1,0 +1,20 @@
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+
+# Messdaten und lokale Exporte
+data/
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+exports/
+
+# Temporäre Treiberversionen
+DHT.py.bak
+DHT.py.debug-backup
+
+# Lokale Konfigurationen
+.env
+.env.*
