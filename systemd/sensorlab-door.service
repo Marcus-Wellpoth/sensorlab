@@ -1,0 +1,15 @@
+[Unit]
+Description=SensorLab HC-SR04 Balcony Door Logger
+After=local-fs.target
+
+[Service]
+Type=simple
+User=marcus
+WorkingDirectory=/home/marcus/Projekte/sensorlab
+ExecStart=/home/marcus/Projekte/sensorlab/.venv/bin/python -u /home/marcus/Projekte/sensorlab/door_logger.py
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target
