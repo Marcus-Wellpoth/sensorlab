@@ -16,7 +16,6 @@ Bauteilfeuchtigkeit oder mikrobiellen Befall dar.
 - HC-SR04 Ultraschall-Abstandssensor für die Balkontür
 - Versorgung: 3,3 V
 - Datenleitung: BCM GPIO4
-- Gemeinsame Masse (GND)
 
 ## Messsoftware
 
@@ -52,7 +51,25 @@ Spalten:
 - sensor
 - temperature_c: Temperatur in Grad Celsius
 - humidity_pct: relative Luftfeuchtigkeit in Prozent
+- absolute_humidity_g_m3: berechnete absolute Luftfeuchtigkeit in g/m³
 - status: 0 bedeutet erfolgreiche Sensorauslesung
+
+Die absolute Luftfeuchtigkeit wird aus Temperatur und relativer
+Luftfeuchtigkeit mithilfe der Magnus-Formel berechnet.
+Der verwendete Sättigungsdampfdruck lautet:
+
+    e_s(T) = 6.112 * exp(17.62 * T / (243.12 + T))
+
+Die absolute Luftfeuchtigkeit ergibt sich aus:
+
+    rho_v = 216.7 * e_s(T) * (RH / 100) / (T + 273.15)
+
+T wird in °C, RH in Prozent und rho_v in g/m³ angegeben.
+Der berechnete Wert ist kein unabhängiger Sensormesswert.
+Die Unsicherheit der DHT11-Messungen überträgt sich auf das Ergebnis.
+
+Bestehende Datensätze werden beim nächsten Logger-Lauf automatisch
+ergänzt. Das Messintervall bleibt unverändert bei drei Stunden.
 
 Messdaten werden nicht im öffentlichen Git-Repository veröffentlicht.
 
